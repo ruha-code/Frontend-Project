@@ -22,14 +22,13 @@
                         <input type="email" id="login-email" placeholder="example@code.com" required>
                     </div>
                     
-                    <div class="form-group password-group">
+                    <div class="form-group">
                         <label for="login-password">Password</label>
-                        <div class="input-with-icon">
-                            <input type="password" id="login-password" placeholder="••••••••" required>
-                            <button type="button" class="show-password-btn" data-target="login-password" aria-label="Show password">
-                                👁️
-                            </button>
-                        </div>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="show-login-password">
+                        <label for="show-login-password">Show Password</label>
                     </div>
                     <button type="submit" class="btn-submit">Login</button>
                     <a href="#" class="forgot-link">Forgot Password?</a>
@@ -48,14 +47,13 @@
                         <input type="email" id="register-email" placeholder="newuser@code.com" required>
                     </div>
                     
-                    <div class="form-group password-group">
+                    <div class="form-group">
                         <label for="register-password">Password</label>
-                        <div class="input-with-icon">
-                            <input type="password" id="register-password" placeholder="••••••••" required>
-                            <button type="button" class="show-password-btn" data-target="register-password" aria-label="Show password">
-                                👁️
-                            </button>
-                        </div>
+                        <input type="password" id="register-password" placeholder="••••••••" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="show-register-password">
+                        <label for="show-register-password">Show Password</label>
                     </div>
                     <button type="submit" class="btn-submit">Register</button>
                 </form>
@@ -71,7 +69,6 @@
         const loginFormBox = document.getElementById('login-form-box');
         const registerFormBox = document.getElementById('register-form-box');
 
-        // Form switching logic
         loginToggle.addEventListener('click', () => {
             loginFormBox.classList.add('active');
             registerFormBox.classList.remove('active');
@@ -86,21 +83,18 @@
             registerToggle.classList.add('active');
         });
 
-        document.querySelectorAll('.show-password-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const targetId = button.getAttribute('data-target');
-                const passwordInput = document.getElementById(targetId);
+        const showLoginPassword = document.getElementById('show-login-password');
+        const loginPasswordInput = document.getElementById('login-password');
+        
+        showLoginPassword.addEventListener('change', (e) => {
+            loginPasswordInput.type = e.target.checked ? 'text' : 'password';
+        });
 
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    button.textContent = '🔒'; 
-                    button.setAttribute('aria-label', 'Hide password');
-                } else {
-                    passwordInput.type = 'password';
-                    button.textContent = '👁️'; 
-                    button.setAttribute('aria-label', 'Show password');
-                }
-            });
+        const showRegisterPassword = document.getElementById('show-register-password');
+        const registerPasswordInput = document.getElementById('register-password');
+        
+        showRegisterPassword.addEventListener('change', (e) => {
+            registerPasswordInput.type = e.target.checked ? 'text' : 'password';
         });
     </script>
 </body>
