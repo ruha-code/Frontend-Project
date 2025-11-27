@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Tech | Login and Register</title>
+    <link rel="stylesheet" href="style-auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <div class="form-toggle">
+                <button class="toggle-btn active" id="login-toggle">Login</button>
+                <button class="toggle-btn" id="register-toggle">Register</button>
+            </div>
+
+            <div class="auth-form-box active" id="login-form-box">
+                <h2>Login to Nexus<span>Tech</span></h2>
+                <form class="auth-form" id="loginForm" action="#" method="POST">
+                    <div id="loginErrorBox" class="error-message-box"></div>
+                    
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="example@code.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="show-login-password">
+                        <label for="show-login-password">Show Password</label>
+                    </div>
+                    <button type="submit" class="btn-submit">Login</button>
+                </form>
+            </div>
+
+            <div class="auth-form-box" id="register-form-box">
+                <h2>Create Account</h2>
+                <form class="auth-form" id="registerForm" action="#" method="POST">
+                    <div id="registerErrorBox" class="error-message-box"></div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Username</label>
+                        <input type="text" id="fullName" placeholder="NexusCoder" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="newuser@code.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="show-register-password">
+                        <label for="show-register-password">Show Password</label>
+                    </div>
+                    <button type="submit" class="btn-submit">Register</button>
+                </form>
+            </div>
+            
+            <p class="back-link"><a href="index.html">← Back to Home</a></p>
+        </div>
+    </div>
+
+    <script>
+        const loginToggle = document.getElementById('login-toggle');
+        const registerToggle = document.getElementById('register-toggle');
+        const loginFormBox = document.getElementById('login-form-box');
+        const registerFormBox = document.getElementById('register-form-box');
+
+        loginToggle.addEventListener('click', () => {
+            loginFormBox.classList.add('active');
+            registerFormBox.classList.remove('active');
+            loginToggle.classList.add('active');
+            registerToggle.classList.remove('active');
+            document.getElementById('registerErrorBox').style.display = 'none';
+        });
+
+        registerToggle.addEventListener('click', () => {
+            loginFormBox.classList.remove('active');
+            registerFormBox.classList.add('active');
+            loginToggle.classList.remove('active');
+            registerToggle.classList.add('active');
+            document.getElementById('loginErrorBox').style.display = 'none';
+        });
+
+        const showLoginPassword = document.getElementById('show-login-password');
+        const loginPasswordInput = document.getElementById('loginPassword');
+        
+        showLoginPassword.addEventListener('change', (e) => {
+            loginPasswordInput.type = e.target.checked ? 'text' : 'password';
+        });
+
+        const showRegisterPassword = document.getElementById('show-register-password');
+        const registerPasswordInput = document.getElementById('password');
+        const registerConfirmPasswordInput = document.getElementById('confirmPassword');
+        
+        showRegisterPassword.addEventListener('change', (e) => {
+            const isChecked = e.target.checked;
+            registerPasswordInput.type = isChecked ? 'text' : 'password';
+            registerConfirmPasswordInput.type = isChecked ? 'text' : 'password';
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
