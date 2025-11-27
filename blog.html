@@ -5,186 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - NexusTech | Latest Insights</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-        /* =========================================================
-           1. VARIABLES AND BASE STYLES
-           ========================================================= */
+     
         :root {
-            --color-primary: #3b82f6; /* Blue 500 */
-            --color-primary-dark: #2563eb; /* Blue 600 */
-            --color-bg-light: #f9fafb; /* Gray 50 */
-            --color-bg-dark: #1f2937; /* Gray 800 (for footer) */
-            --color-text-main: #111827; /* Gray 900 */
-            --color-text-secondary: #4b5563; /* Gray 600 */
-            --color-border: #e5e7eb; /* Gray 200 */
+            --color-primary: #3b82f6; 
+            --color-primary-dark: #2563eb; 
+            --color-bg-light: #f9fafb; 
+            --color-bg-dark: #1f2937; 
+            --color-text-main: #111827; 
+            --color-text-secondary: #4b5563; 
+            --color-border: #e5e7eb; 
             --transition-speed: 0.3s;
             --header-height: 80px;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--color-text-main);
-            background-color: #fff;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--color-text-main);
-            transition: color var(--transition-speed);
-        }
-
-        a:hover {
-            color: var(--color-primary);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        /* Section styles (for padding) */
-        .section-padding {
-            padding: 4rem 0;
-        }
-
-        /* =========================================================
-           2. HEADER AND NAVIGATION
-           ========================================================= */
-        header {
-            background-color: #fff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: var(--header-height);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--color-text-main);
-        }
-
-        .logo span {
-            color: var(--color-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin: 0 1rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--color-primary);
-        }
-        
-        .nav-links a:hover {
-            color: var(--color-primary);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .btn-signin {
-            color: var(--color-text-secondary);
-            font-weight: 600;
-        }
-
-        .btn-subscribe {
-            background-color: var(--color-primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color var(--transition-speed), transform 0.1s;
-        }
-
-        .btn-subscribe:hover {
-            background-color: var(--color-primary-dark);
-            color: white; /* override link hover */
-        }
-        
-        .btn-subscribe:active {
-            transform: scale(0.98);
-        }
-
-        .menu-toggle {
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none; /* Hidden on large screens */
-            color: var(--color-text-main);
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            background-color: var(--color-bg-light);
-            border-top: 1px solid var(--color-border);
-            list-style: none;
-            position: absolute;
-            top: var(--header-height);
-            left: 0;
-            padding: 1rem 1.5rem;
-            z-index: 999;
-        }
-
-        .mobile-menu.open {
-            display: flex;
-        }
-
-        .mobile-menu li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .mobile-menu li:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-menu a {
-            display: block;
-            font-weight: 500;
-            color: var(--color-text-main);
-        }
-
-
         /* =========================================================
            3. BLOG PAGE STYLES
            ========================================================= */
@@ -586,8 +420,8 @@
                 </ul>
 
                 <div class="nav-actions">
-                    <a href="#" class="btn-signin">Sign In</a>
-                    <a href="#" class="btn-subscribe">Subscribe</a>
+                    <a href="auth.html" class="btn-signin">Sign In</a>
+                    <a href="index.html#newsletter" class="btn-subscribe">Subscribe</a>
                     <div class="menu-toggle">☰</div>
                 </div>
             </nav>

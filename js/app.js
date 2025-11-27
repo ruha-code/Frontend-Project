@@ -224,5 +224,61 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('hidden-element'); 
         observer.observe(el);
     });
-
 });
+// --- 4. BLOG PAGE LOGIC (Только для страницы blog.html) ---
+    if (document.querySelector('.main-blog-content')) {
+        
+        const categoryLinks = document.querySelectorAll('.category-list a');
+        const articles = document.querySelectorAll('.article-post-card');
+        const showAllButton = document.getElementById('show-all-articles');
+
+        // Функция для фильтрации
+        function filterArticles(category) {
+            const displayStyle = window.innerWidth <= 1024 ? 'flex' : 'flex'; // Используем flex для адаптивности
+
+            articles.forEach(article => {
+                const articleCategoryElement = article.querySelector('.post-category');
+                
+                if (articleCategoryElement) {
+                    const articleCategory = articleCategoryElement.textContent.trim().toUpperCase();
+                    
+                    if (category === 'ALL' || articleCategory === category) {
+                        article.style.display = displayStyle; 
+                    } else {
+                        article.style.display = 'none'; 
+                    }
+                } else if (category === 'ALL') {
+                    article.style.display = displayStyle;
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Обработчики кликов по категориям
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+
+                categoryLinks.forEach(l => l.classList.remove('active-filter'));
+                link.classList.add('active-filter');
+
+                const category = link.getAttribute('data-category');
+                
+                if (category) {
+                    filterArticles(category.toUpperCase());
+                } else if (link.id === 'show-all-articles') {
+                    filterArticles('ALL');
+                }
+            });
+        });
+        
+        // Инициализация фильтра при загрузке
+        if (showAllButton) {
+            filterArticles('ALL');
+            showAllButton.classList.add('active-filter');
+        }
+    }
+
+    // --- 5. SCROLL & ANIMATIONS (Твой код) ---
+    // ... (Остальной код анимаций) ...
