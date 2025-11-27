@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+
     const mobileMenu = document.querySelector('.mobile-menu');
     const toggle = document.querySelector('.menu-toggle');
     const body = document.body;
@@ -6,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggle && mobileMenu) {
         toggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
-            
             
             if (mobileMenu.classList.contains('open')) {
                 toggle.textContent = '✕';
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body.style.overflow = '';
             }
         });
+
 
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -33,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
     const header = document.querySelector('header');
     
     window.addEventListener('scroll', () => {
@@ -43,8 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     });
-
-
     const animatedElements = document.querySelectorAll('.bento-item, .feature-card, .section-header, .newsletter-body, .hero-content');
 
     const observerOptions = {
@@ -64,4 +63,27 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('hidden-element'); 
         observer.observe(el);
     });
+    
+    function updateNavState() {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const navActions = document.querySelector('.nav-actions');
+
+        if (navActions && isLoggedIn) {
+            navActions.innerHTML = `
+                <a href="/profile.html" class="btn-signin">Profile</a>
+                <a href="#newsletter" class="btn-subscribe">Subscribe</a>
+                <a href="#" id="sign-out-btn" class="btn-signin" style="margin-left: 0.75rem;">Sign Out</a>
+                <div class="menu-toggle">☰</div>
+            `;
+            
+            document.getElementById('sign-out-btn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('isLoggedIn'); 
+                window.location.reload(); 
+            });
+        }
+    }
+
+    updateNavState();
+
 });

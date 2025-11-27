@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Tech | Access</title>
+    <link rel="stylesheet" href="/css//style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            
+            <div class="form-toggle">
+                <button class="toggle-btn active" id="login-toggle">Sign In</button>
+                <button class="toggle-btn" id="register-toggle">Register</button>
+            </div>
+
+            <div class="auth-form-box active" id="login-form-box">
+                <div class="header-box">
+                    <h2>Login to Nexus<span>Tech</span></h2>
+                </div>
+                
+                <form class="auth-form" id="loginForm">
+                    <div id="loginErrorBox" class="error-message-box"></div>
+                    
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-footer">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="show-login-password">
+                            <label for="show-login-password">Show Password</label>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Sign In</button>
+                </form>
+            </div>
+
+            <div class="auth-form-box" id="register-form-box">
+                <div class="header-box">
+                    <h2>Create Account</h2>
+                </div>
+
+                <form class="auth-form" id="registerForm">
+                    <div id="registerErrorBox" class="error-message-box"></div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Username</label>
+                        <input type="text" id="fullName" placeholder="NexusCoder" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="name@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="show-register-password">
+                            <label for="show-register-password">Show Passwords</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Sign Up</button>
+                </form>
+            </div>
+            
+            <p class="back-link"><a href="/index.html">← Back to Home</a></p>
+        </div>
+    </div>
+
+   <script>
+        
+    const loginToggle = document.getElementById('login-toggle');
+    const registerToggle = document.getElementById('register-toggle');
+    const loginBox = document.getElementById('login-form-box');
+    const registerBox = document.getElementById('register-form-box');
+    const errorBoxes = document.querySelectorAll('.error-message-box');
+
+    function switchTab(isLogin) {
+        errorBoxes.forEach(box => {
+            box.style.display = 'none';
+            box.textContent = '';
+        });
+
+        if (isLogin) {
+            loginToggle.classList.add('active');
+            registerToggle.classList.remove('active');
+            loginBox.classList.add('active');
+            registerBox.classList.remove('active');
+        } else {
+            loginToggle.classList.remove('active');
+            registerToggle.classList.add('active');
+            loginBox.classList.remove('active');
+            registerBox.classList.add('active');
+        }
+    }
+
+    loginToggle.addEventListener('click', () => switchTab(true));
+    registerToggle.addEventListener('click', () => switchTab(false));
+
+   
+    function togglePassword(checkboxId, inputIds) {
+        const checkbox = document.getElementById(checkboxId);
+        checkbox.addEventListener('change', (e) => {
+            inputIds.forEach(id => {
+                const input = document.getElementById(id);
+                input.type = e.target.checked ? 'text' : 'password';
+            });
+        });
+    }
+
+    togglePassword('show-login-password', ['loginPassword']);
+    togglePassword('show-register-password', ['password', 'confirmPassword']);
+
+    
+    const registerForm = document.getElementById('registerForm');
+    const regErrorBox = document.getElementById('registerErrorBox');
+
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        
+        const pass1 = document.getElementById('password').value;
+        const pass2 = document.getElementById('confirmPassword').value;
+
+        if (pass1 !== pass2) {
+            regErrorBox.style.display = 'block';
+            regErrorBox.textContent = "Error: Passwords do not match!";
+            return;
+        }
+
+        
+        localStorage.setItem('isLoggedIn', 'true');
+        alert("Registration Successful. Redirecting to Homepage.");
+        window.location.href = 'index.html';
+    });
+
+    
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+       
+        localStorage.setItem('isLoggedIn', 'true');
+        alert("Login Successful. Redirecting to Homepage.");
+        window.location.href = 'index.html'; 
+    });
+   </script>
+    
+
+</body>
+</html>

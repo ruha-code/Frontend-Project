@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | Nexus Tech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-offset">
+    
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/index.html" class="logo">Nexus<span>Tech</span></a>
+                <ul class="nav-links">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="/auth.html" class="btn-signin">Sign In</a>
+                    <a href="#newsletter" class="btn-subscribe">Subscribe</a>
+                    <div class="menu-toggle">☰</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="profile-section section-padding">
+        <div class="container profile-layout">
+            
+            <aside class="profile-nav bento-item">
+                <h3>My Account</h3>
+                <ul>
+                    <li><a href="#" class="active" data-section="overview">Overview</a></li>
+                    <li><a href="#" data-section="profile-info">Profile Information</a></li>
+                    <li><a href="#" data-section="account-settings">Account Settings</a></li>
+                    <li><a href="#" data-section="notification-settings">Notification Settings</a></li>
+                </ul>
+                <button id="profile-sign-out" class="btn-secondary sign-out-btn">Sign Out</button>
+            </aside>
+
+            <div class="profile-content">
+
+                <div id="overview" class="profile-content-section bento-item active">
+                    <h2 class="gradient-text">Welcome Back, NexusCoder!</h2>
+                    <p class="section-description">This is your personal dashboard for managing subscriptions, saved articles, and settings.</p>
+                    
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <h3>Total Articles Read</h3>
+                            <p class="metric">124</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Comments Posted</h3>
+                            <p class="metric">37</p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Subscription Status</h3>
+                            <p class="metric">Premium <a href="#" class="edit-link">Manage</a></p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" data-section-target="profile-info">Update Profile</button>
+                </div>
+
+                <div id="profile-info" class="profile-content-section bento-item">
+                    <h2 class="gradient-text">Profile Information</h2>
+                    <p class="section-description">Update your personal details here.</p>
+                    <form class="profile-form">
+                        <div class="form-group">
+                            <label for="profileName">Username</label>
+                            <input type="text" id="profileName" value="NexusCoder">
+                        </div>
+                        <div class="form-group">
+                            <label for="profileEmail">Email Address</label>
+                            <input type="email" id="profileEmail" value="ruslan@gmail.com" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileBio">Bio</label>
+                            <textarea id="profileBio" rows="4">Passionate about web development and cutting-edge tech!</textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </form>
+                </div>
+
+                <div id="account-settings" class="profile-content-section bento-item">
+                    <h2 class="gradient-text">Account Settings</h2>
+                    <p class="section-description">Manage your account credentials.</p>
+                    <form class="profile-form">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" placeholder="••••••••">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" placeholder="••••••••">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword">Confirm New Password</label>
+                            <input type="password" id="confirmNewPassword" placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn-primary">Change Password</button>
+                    </form>
+                </div>
+
+                <div id="notification-settings" class="profile-content-section bento-item">
+                    <h2 class="gradient-text">Notification Settings</h2>
+                    <p class="section-description">Control how you receive updates from NexusTech.</p>
+                    <div class="notification-toggle-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Email newsletters for new articles</span>
+                    </div>
+                    <div class="notification-toggle-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Product update announcements</span>
+                    </div>
+                    <div class="notification-toggle-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Comments on your articles</span>
+                    </div>
+                    <button type="submit" class="btn-primary">Save Notification Settings</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-row">
+                <div class="brand-col">
+                    <h3 class="footer-logo">NexusTech</h3>
+                    <p>Smarter Tech for a Smarter Digital Life.</p>
+                </div>
+                <div class="links-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="blog.html">Reviews</a></li>
+                        <li><a href="blog.html">News</a></li>
+                        <li><a href="blog.html">Guides</a></li>
+                    </ul>
+                </div>
+                <div class="links-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 NexusTech.
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script> 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const profileNavLinks = document.querySelectorAll('.profile-nav ul li a');
+        const contentSections = document.querySelectorAll('.profile-content-section');
+        const signOutBtn = document.getElementById('profile-sign-out');
+        const updateProfileBtn = document.querySelector('.overview-grid + .btn-primary');
+        
+        
+        function showSection(sectionId) {
+            
+            contentSections.forEach(sec => {
+                sec.classList.remove('active');
+            });
+            profileNavLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            
+            profileNavLinks.forEach(link => {
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+      
+        const initialSectionId = profileNavLinks[0]?.dataset.section || 'overview';
+        showSection(initialSectionId); 
+
+      
+        
+        
+        profileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetId = e.currentTarget.dataset.section;
+                if (targetId) {
+                    showSection(targetId);
+                }
+            });
+        });
+
+      
+        if (updateProfileBtn) {
+            updateProfileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.currentTarget.dataset.sectionTarget; 
+                if (targetId) {
+                    showSection(targetId);
+                }
+            });
+        }
+
+        if (signOutBtn) {
+            signOutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('isLoggedIn');
+                window.location.href = 'index.html';
+            });
+        }
+    });
+</script>
+</body>
+</html>
