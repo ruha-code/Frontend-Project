@@ -71,7 +71,7 @@ nav {
     font-weight: 600;
     color: var(--primary);
     font-size: 0.95rem;
-    padding: .5rem 1rem;
+    padding: .4rem .8rem;
     border-radius: 8px;
     transition: all .2s ease;
 }
@@ -174,6 +174,10 @@ nav {
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .menu-toggle { display: block; }
+    .nav-actions .btn-signin,
+    .nav-actions .btn-subscribe {
+        display: none;
+    }
 }
 
 @keyframes heroFade {
@@ -1368,3 +1372,168 @@ input:checked + .slider:before {
         margin-left: 0;
     }
 }
+
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px; 
+    }
+
+    .gradient-text {
+        font-size: 2rem; 
+    }
+
+    
+    nav {
+        height: 60px; 
+    }
+    
+    .nav-actions {
+        gap: 0.5rem;
+    }
+
+    .btn-subscribe {
+        padding: 0.5rem 0.8rem; 
+        font-size: 0.9rem;
+    }
+    
+    .logo {
+        font-size: 1.3rem; 
+    }
+
+    
+    .hero {
+        padding: 80px 0 50px; 
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column; 
+        width: 100%;
+    }
+    
+    .hero-btn {
+        width: 100%;
+        padding: 0.7rem 1.5rem;
+    }
+
+    
+    .section-padding {
+        padding: 40px 0;
+    }
+    
+    .bento-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .section-header {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+   
+    .newsletter-dark {
+        padding: 40px 0; 
+    }
+    
+    .newsletter-body h2 {
+        font-size: 1.8rem; 
+    }
+
+    
+    .footer-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .links-col {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    
+    .auth-container {
+        padding: 30px 15px;
+    }
+    
+    .auth-page {
+        align-items: flex-start;
+        padding-top: 50px;
+    }
+    
+   
+    .profile-nav ul li a {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+.mobile-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 10px 0;
+}
+
+.mobile-cta {
+    margin-top: 20px;
+    padding: 0; 
+}
+
+.mobile-cta a {
+    text-align: center;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    display: block;
+}
+
+.mobile-menu a.btn-secondary { 
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    font-weight: 600;
+}
+
+
+@media (max-width: 768px) {
+    
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+
+    
+    .nav-actions a {
+        display: none !important; 
+    }
+
+    
+    .hero { padding: 100px 0; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-buttons { flex-direction: column; width: 80%; margin: 0 auto; }
+    
+    .bento-grid { 
+    grid-template-columns: 1fr; 
+    }
+
+
+    .profile-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+}
+}
+
