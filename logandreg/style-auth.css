@@ -127,7 +127,7 @@ a{
 .btn-submit {
     display: block;
     width: 100%;
-    background: linear-gradient(90deg, var(--primary), #1e40af);
+    background: var(--primary); 
     color: white;
     padding: 12px 1rem;
     border: none;
@@ -136,13 +136,13 @@ a{
     font-size: 1.05rem;
     cursor: pointer;
     margin-top: 1.5rem;
-    background-size: 200%;
-    transition: background-position .4s ease, transform .2s ease;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+    transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .btn-submit:hover {
-    background-position: right;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
 }
 
 .forgot-link {
