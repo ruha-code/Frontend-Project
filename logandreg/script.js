@@ -90,7 +90,7 @@ function validateLogin(event) {
        
         alert("Login successful!");
 
-        window.location.href = 'childhood.html';
+        window.location.href = 'index.html';
        
         document.getElementById('loginForm').reset();
     } else {
