@@ -1,15 +1,13 @@
-/* Переменные из style.css */
 :root{
     --primary:#2563eb;
     --secondary:#1e293b;
-    --bg-body: #f8fafc; /* Светло-серый */
+    --bg-body: #f8fafc;
     --main-text: #0f172a;
     --muted-text: #64748b;
     --radius: 8px;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Сброс и базовые стили */
 *{
     box-sizing: border-box;
     margin:0;
@@ -29,18 +27,14 @@ a{
     transition: color .2s;
 }
 
-/* Обёртка для центрирования */
 .auth-wrapper {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    /* ИЗМЕНЕНИЕ: Белый/светло-серый фон */
     background-color: var(--bg-body); 
 }
-
-/* Основной контейнер формы */
 .auth-container {
     background: white;
     padding: 2.5rem;
@@ -48,13 +42,11 @@ a{
     width: 100%;
     max-width: 400px;
     position: relative;
-    /* ИЗМЕНЕНИЕ: Тонкая тень и градиентная рамка */
     box-shadow: 
-        0 0 0 1px rgba(0, 0, 0, 0.08), /* Тонкая серая линия по краю */
-        0 15px 40px -10px rgba(0, 0, 0, 0.05); /* Легкая тень для глубины */
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 15px 40px -10px rgba(0, 0, 0, 0.05); 
 }
 
-/* Переключатель форм */
 .form-toggle {
     display: flex;
     margin-bottom: 2rem;
@@ -82,7 +74,6 @@ a{
     box-shadow: var(--shadow);
 }
 
-/* Стили заголовков */
 .auth-form-box h2 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -94,7 +85,6 @@ a{
     color: var(--primary);
 }
 
-/* Формы (скрытие/показ) */
 .auth-form-box {
     opacity: 0;
     height: 0;
@@ -107,7 +97,6 @@ a{
     height: auto; 
 }
 
-/* Элементы формы */
 .form-group {
     margin-bottom: 1rem;
 }
@@ -135,7 +124,6 @@ a{
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
-/* Кнопка отправки */
 .btn-submit {
     display: block;
     width: 100%;
@@ -157,7 +145,6 @@ a{
     transform: translateY(-1px);
 }
 
-/* Ссылка "Забыли пароль" */
 .forgot-link {
     display: block;
     text-align: center;
@@ -170,7 +157,6 @@ a{
     text-decoration: underline;
 }
 
-/* Ссылка "Вернуться на главную" */
 .back-link {
     text-align: center;
     margin-top: 2rem;
@@ -183,4 +169,35 @@ a{
 
 .back-link a:hover {
     color: var(--primary);
+}
+.input-with-icon {
+    position: relative;
+}
+.input-with-icon input {
+    padding-right: 45px; 
+}
+.show-password-btn {
+    position: absolute;
+    right: 1px; 
+    top: 0;
+    bottom: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--muted-text);
+    padding: 0 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .2s ease;
+}
+
+.show-password-btn:hover {
+    color: var(--primary);
+}
+
+.show-password-btn:focus {
+    outline: none;
 }

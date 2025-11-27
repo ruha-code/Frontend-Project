@@ -21,6 +21,7 @@
                         <label for="login-email">Email</label>
                         <input type="email" id="login-email" placeholder="example@code.com" required>
                     </div>
+                    
                     <div class="form-group password-group">
                         <label for="login-password">Password</label>
                         <div class="input-with-icon">
@@ -46,6 +47,7 @@
                         <label for="register-email">Email</label>
                         <input type="email" id="register-email" placeholder="newuser@code.com" required>
                     </div>
+                    
                     <div class="form-group password-group">
                         <label for="register-password">Password</label>
                         <div class="input-with-icon">
@@ -64,12 +66,12 @@
     </div>
 
     <script>
-        // Код для переключения форм (оставлен без изменений)
         const loginToggle = document.getElementById('login-toggle');
         const registerToggle = document.getElementById('register-toggle');
         const loginFormBox = document.getElementById('login-form-box');
         const registerFormBox = document.getElementById('register-form-box');
 
+        // Form switching logic
         loginToggle.addEventListener('click', () => {
             loginFormBox.classList.add('active');
             registerFormBox.classList.remove('active');
@@ -84,21 +86,18 @@
             registerToggle.classList.add('active');
         });
 
-        // НОВЫЙ КОД: Функция показать/скрыть пароль
-        const passwordToggleButtons = document.querySelectorAll('.show-password-btn');
-
-        passwordToggleButtons.forEach(button => {
+        document.querySelectorAll('.show-password-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const targetId = button.getAttribute('data-target');
                 const passwordInput = document.getElementById(targetId);
-                
+
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text';
-                    button.textContent = '🙈'; // Иконка "Скрыть"
+                    button.textContent = '🔒'; 
                     button.setAttribute('aria-label', 'Hide password');
                 } else {
                     passwordInput.type = 'password';
-                    button.textContent = '👁️'; // Иконка "Показать"
+                    button.textContent = '👁️'; 
                     button.setAttribute('aria-label', 'Show password');
                 }
             });
