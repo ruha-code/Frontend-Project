@@ -2076,7 +2076,7 @@ input:checked + .slider:before {
 }
 
 .team-member {
-    background: white;
+    background:rgba(118, 198, 255, 0.05);
     padding: 2rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
