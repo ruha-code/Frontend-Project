@@ -1,4 +1,3 @@
-
 function getProfileData() {
     const defaultData = { name: 'NexusCoder', email: 'ruslan@gmail.com' };
     let data = localStorage.getItem('userProfile');
@@ -34,24 +33,25 @@ function renderMobileMenu(isLoggedIn) {
         `;
     }
     
+    // ИСПРАВЛЕНО: ССЫЛКА ДОЛЖНА ВЕСТИ НА ГЛАВНУЮ СТРАНИЦУ + ЯКОРЬ
     menuHTML += `
-        <li class="mobile-cta"><a href="#newsletter" class="btn-subscribe">Subscribe Now</a></li>
+        <li class="mobile-cta"><a href="index.html#newsletter" class="btn-subscribe">Subscribe Now</a></li>
     `;
     return menuHTML;
 }
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    
     
     const navActions = document.querySelector('.nav-actions');
     const mobileMenu = document.querySelector('.mobile-menu');
     const body = document.body;
-
+    const header = document.querySelector('header');
     
- 
-    if (navActions && mobileMenu) {
+    // --- 1. ЛОГИКА БУРГЕРА (Делегирование и фикс высоты хедера) ---
+    if (navActions && mobileMenu && header) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        
         navActions.addEventListener('click', (e) => {
             
             if (e.target.classList.contains('menu-toggle')) {
@@ -60,9 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (mobileMenu.classList.contains('open')) {
                     e.target.textContent = '✕';
                     body.style.overflow = 'hidden'; 
+                    // НОВАЯ ЛОГИКА: Снимаем ограничение высоты, чтобы меню уместилось
+                    header.style.minHeight = 'auto'; 
                 } else {
                     e.target.textContent = '☰';
                     body.style.overflow = '';
+                    // НОВАЯ ЛОГИКА: Возвращаем стандартную высоту хедера
+                    header.style.minHeight = 'var(--header-height)'; 
                 }
             }
         });
@@ -72,9 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (e.target.tagName === 'A' && !e.target.classList.contains('btn-subscribe')) {
                 mobileMenu.classList.remove('open');
-                document.querySelector('.menu-toggle').textContent = '☰';
+                // Проверяем, существует ли menuToggle, прежде чем менять текст
+                if (menuToggle) {
+                    menuToggle.textContent = '☰';
+                }
                 body.style.overflow = '';
-
+                header.style.minHeight = 'var(--header-height)'; // Возвращаем высоту
                 
                 if (e.target.id === 'mobile-sign-out') {
                     e.preventDefault();
@@ -86,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   
+    
+    // --- 2. ОБНОВЛЕНИЕ NAV BAR (Десктоп) ---
     function updateNavState() {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         
@@ -94,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navActions && isLoggedIn) {
             navActions.innerHTML = `
                 <a href="profile.html" class="btn-signin">Profile</a>
-                <a href="#newsletter" class="btn-subscribe">Subscribe</a>
+                <a href="index.html#newsletter" class="btn-subscribe">Subscribe</a> 
                 <a href="#" id="sign-out-btn" class="btn-signin" style="margin-left: 0.75rem;">Sign Out</a>
                 <div class="menu-toggle">☰</div>
             `;
@@ -114,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavState();
 
 
+    // --- 3. PROFILE PAGE LOGIC ---
     if (document.body.classList.contains('bg-offset') && document.querySelector('.profile-layout')) {
         
         const profileData = getProfileData();
@@ -195,37 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const header = document.querySelector('header');
     
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    
-    const animatedElements = document.querySelectorAll('.bento-item, .feature-card, .section-header, .newsletter-body, .hero-content');
-
-    const observerOptions = {
-        threshold: 0.15 
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    animatedElements.forEach(el => {
-        el.classList.add('hidden-element'); 
-        observer.observe(el);
-    });
-});
-// --- 4. BLOG PAGE LOGIC (Только для страницы blog.html) ---
+    // --- 4. BLOG PAGE LOGIC ---
     if (document.querySelector('.main-blog-content')) {
         
         const categoryLinks = document.querySelectorAll('.category-list a');
@@ -234,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Функция для фильтрации
         function filterArticles(category) {
-            const displayStyle = window.innerWidth <= 1024 ? 'flex' : 'flex'; // Используем flex для адаптивности
+            const displayStyle = window.innerWidth <= 1024 ? 'flex' : 'flex'; 
 
             articles.forEach(article => {
                 const articleCategoryElement = article.querySelector('.post-category');
@@ -280,5 +260,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 5. SCROLL & ANIMATIONS (Твой код) ---
-    // ... (Остальной код анимаций) ...
+
+    // --- 5. SCROLL & ANIMATIONS ---
+    
+    // (Логика анимации теперь объединена)
+    const animatedElements = document.querySelectorAll('.bento-item, .feature-card, .section-header, .newsletter-body, .hero-content, .article-post-card, .sidebar, .page-header');
+
+    const observerOptions = {
+        threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Используем класс 'in-view' из старого кода или 'visible-element' из нового
+                entry.target.classList.add('in-view'); 
+                entry.target.classList.add('visible-element'); 
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    animatedElements.forEach(el => {
+        el.classList.add('hidden-element'); 
+        observer.observe(el);
+    });
+
+    // Логика для хедера при прокрутке (уже была в коде)
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    
+});
