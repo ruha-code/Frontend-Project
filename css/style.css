@@ -1538,3 +1538,145 @@ input:checked + .slider:before {
 }
 
 
+
+
+
+
+
+.post-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    background: white;
+    padding: 0 !important;
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    animation: heroFade 0.8s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.single-post {
+    overflow: hidden;
+}
+
+.post-header {
+    padding: 2.5rem 2.5rem 1.5rem;
+    text-align: center;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted-text);
+}
+
+.post-header h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    text-align: left;
+}
+
+.author-info img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-name {
+    display: block;
+    font-weight: 700;
+    color: var(--secondary);
+    font-size: 0.95rem;
+}
+
+.read-time {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+}
+
+.post-image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 2.5rem;
+    font-size: 1.1rem;
+    color: #334155;
+    line-height: 1.8;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.post-content .lead {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.post-content h2, .post-content h3 {
+    color: var(--secondary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--primary);
+    background: #f8fafc;
+    padding: 1.5rem;
+    font-style: italic;
+    color: var(--secondary);
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.post-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.post-content li {
+    margin-bottom: 0.5rem;
+}
+
+.post-footer {
+    padding: 1.5rem 2.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.tags span {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+
+@media (max-width: 600px) {
+    .page-header h1 { font-size: 2rem; }
+    .post-header { padding: 1.5rem; }
+    .post-content { padding: 1.5rem; }
+    .post-header h1 { font-size: 1.75rem; }
+}
