@@ -80,7 +80,7 @@ function updateNavState() {
             e.preventDefault();
             localStorage.removeItem('isLoggedIn'); 
             localStorage.removeItem('userProfile');
-            window.location.reload(); 
+            window.location.href = 'index.html';
         });
     }
 
