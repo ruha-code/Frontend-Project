@@ -2435,27 +2435,21 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
     
-    /* 1. Настройка основного контейнера подписки */
     .newsletter-body {
-        /* Убедимся, что контейнер формы занимает всю ширину */
         max-width: 100%; 
-        padding: 0 15px; /* Добавляем внутренние отступы, чтобы контент не прилипал к краю viewport */
-        margin: 0 auto; /* Центрируем */
+        padding: 0 15px;
+        margin: 0 auto; 
     }
-
-    /* 2. Уменьшение шрифтов */
     .newsletter-body h2 {
-        font-size: 2rem; /* Уменьшаем заголовок */
+        font-size: 2rem;
     }
     .newsletter-body p {
-        font-size: 1rem; /* Уменьшаем описание */
+        font-size: 1rem; 
     }
 
-    /* 3. Очищаем горизонтальный padding для общего контейнера */
     .container {
-        padding: 0 15px; /* Уменьшаем горизонтальный padding */
+        padding: 0 15px;
     }
 
-    /* ... остальные стили ... */
 }
 
