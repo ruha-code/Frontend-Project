@@ -1,7 +1,7 @@
 // DATA AND VALIDATION FUNCTIONS (1/7)
 
 function getProfileData() {
-    const defaultData = { name: 'NexusCoder', email: 'ruslan@gmail.com' };
+    let defaultData = { name: 'NexusCoder', email: 'ruslan@gmail.com' };
     let data = localStorage.getItem('userProfile');
     if (!data) {
         localStorage.setItem('userProfile', JSON.stringify(defaultData));

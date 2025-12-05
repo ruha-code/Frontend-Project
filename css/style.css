@@ -930,10 +930,10 @@ header.scrolled {
 
 .toggle-btn {
     flex: 1;
-    padding: 10px;
+    padding: 13px;
     border: none;
     background: transparent;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
     color: var(--muted-text);
     cursor: pointer;
@@ -1009,7 +1009,7 @@ header.scrolled {
     font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
-    margin-top: 1.5rem;
+    margin-top: 0.88rem;
     box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3); 
     transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -1125,7 +1125,7 @@ header.scrolled {
 .btn-primary {
     background: var(--primary);
     color: white;
-    padding: 12px 28px;
+    padding: 16px 28px;
     border-radius: 15px;
     font-weight: 600;
     transition: all 0.2s ease;
