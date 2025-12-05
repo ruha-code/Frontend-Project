@@ -1,11 +1,7 @@
-// DATA AND VALIDATION FUNCTIONS (1/7)
-
 function getProfileData() {
-    let defaultData = { name: 'NexusCoder', email: 'ruslan@gmail.com' };
     let data = localStorage.getItem('userProfile');
     if (!data) {
-        localStorage.setItem('userProfile', JSON.stringify(defaultData));
-        return defaultData;
+        return null;
     }
     return JSON.parse(data);
 }
@@ -28,16 +24,14 @@ function validatePassword(password) {
         return "Password must contain at least one number.";
     }
     if (!/[^A-Za-z0-9]/.test(password)) {
-        return "Password must contain at least one special character (e.g., !, @, #).";
+       return "Password must contain at least one special character (e.g., !, @, #).";
     }
     return null;
 }
 
-// NAVIGATION AND MENU RENDERING (2/7)
-
 function renderMobileMenu(isLoggedIn) {
     let menuHTML = `
-        <li><a href="index.html"">Home</a></li> 
+        <li><a href="index.html">Home</a></li> 
         <li><a href="blog.html">Blog</a></li>
         <li><a href="сontact.html">About</a></li> 
         <li><a href="сontact.html#for-contact">Contact</a></li> 
@@ -67,7 +61,6 @@ function updateNavState() {
     const mobileMenu = document.querySelector('.mobile-menu');
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     
-    
     if (navActions && isLoggedIn) {
         navActions.innerHTML = `
             <a href="profile.html" class="btn-signin">Profile</a>
@@ -79,7 +72,6 @@ function updateNavState() {
         document.getElementById('sign-out-btn')?.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('isLoggedIn'); 
-            localStorage.removeItem('userProfile');
             window.location.href = 'index.html';
         });
     }
@@ -88,8 +80,6 @@ function updateNavState() {
         mobileMenu.innerHTML = renderMobileMenu(isLoggedIn);
     }
 }
-
-// ACTIVE NAVIGATION MANAGEMENT (3/7)
 
 function setActiveNav() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
@@ -122,10 +112,6 @@ function setActiveNav() {
     });
 }
 
-
-
-// MAIN DOM CONTENT LOADED LOGIC (4/7)
-
 document.addEventListener('DOMContentLoaded', () => {
     
     const navActions = document.querySelector('.nav-actions');
@@ -137,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const menuToggle = document.querySelector('.menu-toggle');
         
         navActions.addEventListener('click', (e) => {
-            
             if (e.target.classList.contains('menu-toggle')) {
                 mobileMenu.classList.toggle('open');
                 
@@ -151,9 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        
         mobileMenu.addEventListener('click', (e) => {
-            
             if (e.target.tagName === 'A' && !e.target.classList.contains('btn-subscribe')) {
                 mobileMenu.classList.remove('open');
                 if (menuToggle) {
@@ -164,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.target.id === 'mobile-sign-out') {
                     e.preventDefault();
                     localStorage.removeItem('isLoggedIn');
-                    localStorage.removeItem('userProfile');
                     window.location.href = 'index.html';
                 }
             }
@@ -174,14 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavState();
     setActiveNav(); 
 
-  
-    // PROFILE PAGE LOGIC (5/7)
-
-    
     if (document.body.classList.contains('bg-offset') && document.querySelector('.profile-layout')) {
         
         const profileData = getProfileData();
-        
+
         const profileNavLinks = document.querySelectorAll('.profile-nav ul li a');
         const contentSections = document.querySelectorAll('.profile-content-section');
         const signOutBtn = document.getElementById('profile-sign-out');
@@ -191,14 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const profileEmailInput = document.getElementById('profileEmail');
         const profileInfoForm = document.querySelector('#profile-info .profile-form');
         
-    
-        if (overviewGreeting) {
+        if (overviewGreeting && profileData) {
             overviewGreeting.textContent = `Welcome Back, ${profileData.name}!`;
         }
-        if (profileNameInput) {
+        if (profileNameInput && profileData) {
             profileNameInput.value = profileData.name;
         }
-        if (profileEmailInput) {
+        if (profileEmailInput && profileData) {
             profileEmailInput.value = profileData.email;
         }
 
@@ -235,7 +212,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 
                 const newName = profileNameInput.value.trim();
-                const newProfileData = { name: newName, email: profileData.email }; 
+                const newProfileData = { 
+                    name: newName, 
+                    email: profileData.email,
+                    password: profileData.password 
+                }; 
                 
                 if (!newName) {
                     alert("Error: Username cannot be empty.");
@@ -253,13 +234,11 @@ document.addEventListener('DOMContentLoaded', () => {
             signOutBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userProfile');
                 window.location.href = 'index.html';
             });
         }
     }
 
-    // BLOG PAGE LOGIC (6/7)
     if (document.querySelector('.main-blog-content')) {
         
         const categoryLinks = document.querySelectorAll('.category-list a');
@@ -311,8 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-    // AUTHENTICATION LOGIC (7/7)
     const registrationForm = document.getElementById('register-form');
     const registerMessage = document.getElementById('register-message');
 
@@ -353,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            const newUser = { name: name, email: email };
+            const newUser = { name: name, email: email, password: password };
             
             saveProfileData(newUser); 
             localStorage.setItem('isLoggedIn', 'true');
@@ -369,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sign in part
     const loginForm = document.getElementById('login-form');
     const loginErrorBox = document.getElementById('loginErrorBox'); 
 
@@ -383,13 +359,13 @@ document.addEventListener('DOMContentLoaded', () => {
             loginErrorBox.style.display = 'none';
             loginErrorBox.textContent = '';
             
-            if (emailInput && passwordInput) {
+            const storedUser = getProfileData();
+
+            if (storedUser && emailInput === storedUser.email && passwordInput === storedUser.password) {
                 localStorage.setItem('isLoggedIn', 'true');
-                getProfileData(); 
-                
                 window.location.href = 'index.html'; 
             } else {
-                loginErrorBox.textContent = "Error: Please enter both email and password.";
+                loginErrorBox.textContent = "Error: Invalid email or password.";
                 loginErrorBox.style.display = 'block';
             }
         });
